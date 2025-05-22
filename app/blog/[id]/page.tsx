@@ -1,5 +1,5 @@
 // app/blog/[id]/page.tsx
-import AdSlot from "@/app/components/Adslot";
+import AdSlot from "@/app/components/AdSlot";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import PostCommentSection from "@/app/components/PostCommentSection";
@@ -20,7 +20,7 @@ type Props = {
   params: { id: string };
 };
 
-export default async function PostDetailPage({ params }: {params:{id:string}}) {
+export default async function PostDetailPage({ params }: {params:{id:string} }) {
   const postId = Number(params.id);
 
   if (isNaN(postId)) return notFound();
