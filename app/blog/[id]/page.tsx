@@ -1,0 +1,68 @@
+// app/blog/[id]/page.tsx
+import AdSlot from "@/app/components/Adslot";
+import { db } from "@/lib/db";
+import { notFound } from "next/navigation";
+import PostCommentSection from "@/app/components/PostCommentSection";
+import PostLikeButton from "@/app/components/PostLikeButton";
+
+
+type Post = {
+  id: number;
+  title: string;
+  content: string;
+  like_count: number;
+  comment_count: number;
+  created_at: string;
+  category: string;
+};
+
+type Props = {
+  params: { id: string };
+};
+
+export default async function PostDetailPage({ params }: Props) {
+  const postId = Number(params.id);
+
+  if (isNaN(postId)) return notFound();
+
+  const [rows] = await db.query("SELECT * FROM post WHERE id = ?", [postId]);
+  const post = (rows as Post[])[0];
+
+  if (!post) return notFound();
+
+  return (
+  <div className="max-w-3xl mx-auto py-12 px-6">
+    {/* 카테고리 & 날짜 */}
+    <div className="mb-6">
+      <span className="inline-block text-xs bg-pink-200 text-pink-700 px-3 py-1 rounded-full font-semibold mb-2">
+        #{post.category}
+      </span>
+      <h1 className="text-3xl font-bold leading-tight text-gray-900 mb-2">
+        {post.title}
+      </h1>
+      <p className="text-sm text-gray-500">
+        {new Date(post.created_at).toLocaleString()}
+      </p>
+    </div>
+
+    {/* 본문 내용 */}
+    <div className="prose prose-lg max-w-none leading-relaxed text-gray-800 whitespace-pre-line">
+      {post.content}
+    </div>
+
+    {/* 좋아요, 댓글 수 */}
+    <div className="mt-10 flex items-center gap-6 text-sm text-gray-500 border-t pt-6">
+       <PostLikeButton postId={post.id} initialCount={post.like_count} />
+      <span>💬 댓글 {post.comment_count}개</span>
+    </div>
+    {/**광고 */}
+    <AdSlot/>
+
+     {/* 🔥 여기 아래에 클라이언트 댓글 영역 삽입 */}
+    <PostCommentSection postId={post.id} />
+ 
+  </div>
+    
+  
+);
+}
