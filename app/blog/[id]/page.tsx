@@ -20,7 +20,7 @@ type Props = {
   params: { id: string };
 };
 
-export default async function PostDetailPage({ params }: Props) {
+export default async function PostDetailPage({ params }: {params:{id:string}}) {
   const postId = Number(params.id);
 
   if (isNaN(postId)) return notFound();
