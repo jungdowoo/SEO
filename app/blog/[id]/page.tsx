@@ -1,5 +1,6 @@
 // app/blog/[id]/page.tsx
-import AdSlot from "@/app/components/AdSlot";
+
+import AdSlot from "../../components/AdSlot";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import PostCommentSection from "@/app/components/PostCommentSection";

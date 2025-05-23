@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import AdSlot from "@/app/components/AdSlot";
+import AdSlot from "../components/AdSlot";
 
 
 const categories = ["전체", "베스트썰", "18세썰", "사이다썰", "연애썰", "치정썰"];
