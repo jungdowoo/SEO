@@ -13,7 +13,7 @@ type Post = {
   content: string;
   like_count: number;
   comment_count: number;
-  created_at: string;
+  created_at: string; 
   category: string;
 };
 
