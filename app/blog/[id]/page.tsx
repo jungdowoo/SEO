@@ -16,9 +16,7 @@ type Post = {
   category: string;
 };
 
-// type Props = {
-//   params: { id: string };
-// };
+
 
 export default async function PostDetailPage({ params }: {params:{id:string} }) {
   const postId = Number(params.id);
