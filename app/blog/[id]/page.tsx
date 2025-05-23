@@ -19,7 +19,7 @@ type Post = {
 
 
 
-export default async function PostDetailPage({ params }: {params:{id:string} }) {
+export default async function PostDetailPage({ params }: any) {
   const postId = Number(params.id);
 
   if (isNaN(postId)) return notFound();
