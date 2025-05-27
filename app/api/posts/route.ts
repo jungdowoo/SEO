@@ -2,20 +2,14 @@ import { supabase } from '@/lib/supabase';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  try {
-    const { data, error } = await supabase
-      .from('post')
-      .select('id, title, content, like_count, comment_t, created_at, category')
-      .order('created_at', { ascending: false });
+  const { data, error } = await supabase
+    .from('post') // <- 정확한 테이블명
+    .select('*');
 
-    if (error) {
-      console.error('Supabase Error:', error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    return NextResponse.json(data);
-  } catch (err) {
-    console.error('API 오류:', err);
-    return NextResponse.json({ error: '서버 오류' }, { status: 500 });
+  if (error) {
+    console.error('[SUPABASE ERROR]', error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  return NextResponse.json(data);
 }
