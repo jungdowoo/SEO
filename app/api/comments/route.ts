@@ -25,21 +25,35 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const { post_id, content, author } = body;
+  try {
+    const body = await req.json();
+    console.log("[COMMENT POST 요청]", body);
 
-  if (!post_id || !content || !author) {
-    return NextResponse.json({ error: 'post_id, content, author 모두 필요합니다' }, { status: 400 });
+    const { post_id, content, author } = body;
+
+    if (!post_id || !content || !author) {
+      console.warn("[VALIDATION ERROR]", { post_id, content, author });
+      return NextResponse.json(
+        { error: 'post_id, content, author 모두 필요합니다' },
+        { status: 400 }
+      );
+    }
+
+    const { error } = await supabase
+      .from('comment')
+      .insert([{ post_id, content, author }]);
+
+    if (error) {
+      console.error("[SUPABASE INSERT ERROR]", error);
+      return NextResponse.json(
+        { error: error.message, details: error.details || null },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ success: true }, { status: 201 });
+  } catch (err) {
+    console.error("[UNEXPECTED ERROR]", err);
+    return NextResponse.json({ error: "서버 내부 오류 발생", detail: `${err}` }, { status: 500 });
   }
-
-  const { error } = await supabase
-    .from('comment')
-    .insert([{ post_id, content, author }]);
-
-  if (error) {
-    console.error('[COMMENT POST ERROR]', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  return NextResponse.json({ success: true }, { status: 201 });
 }
