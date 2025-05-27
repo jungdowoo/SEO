@@ -1,26 +1,39 @@
+// app/api/posts/like/route.ts
+
 import { supabase } from '@/lib/supabase';
+import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const { post_id } = body;
+  const { postId } = await req.json();
+
+  if (!postId) {
+    return NextResponse.json({ error: 'postId 누락됨' }, { status: 400 });
+  }
 
   // 현재 like_count 가져오기
-  const { data: current, error: fetchError } = await supabase
+  const { data: currentPost, error: fetchError } = await supabase
     .from('post')
     .select('like_count')
-    .eq('id', post_id)
+    .eq('id', postId)
     .single();
 
-  if (fetchError) return Response.json({ error: fetchError.message }, { status: 500 });
+  if (fetchError) {
+    console.error('Fetch Error:', fetchError);
+    return NextResponse.json({ error: fetchError.message }, { status: 500 });
+  }
 
-  const newCount = (current?.like_count || 0) + 1;
+  const newCount = (currentPost?.like_count || 0) + 1;
 
+  // 좋아요 업데이트
   const { error: updateError } = await supabase
     .from('post')
     .update({ like_count: newCount })
-    .eq('id', post_id);
+    .eq('id', postId);
 
-  if (updateError) return Response.json({ error: updateError.message }, { status: 500 });
+  if (updateError) {
+    console.error('Update Error:', updateError);
+    return NextResponse.json({ error: updateError.message }, { status: 500 });
+  }
 
-  return Response.json({ like_count: newCount });
+  return NextResponse.json({ success: true, like_count: newCount });
 }
