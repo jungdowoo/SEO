@@ -10,7 +10,7 @@ export async function GET() {
 
     if (error) {
       console.error('Supabase Error:', error);
-      return NextResponse.json({ error: 'DB 오류 발생' }, { status: 500 });
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json(data);
