@@ -1,16 +1,26 @@
-// app/api/posts/like/route.ts
-
-import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
+import { supabase } from '@/lib/supabase';
 
 export async function POST(req: Request) {
-  const { postId } = await req.json();
+  const body = await req.json();
+  const { post_id } = body;
 
-  if (!postId) {
-    return NextResponse.json({ error: "postId가 없습니다." }, { status: 400 });
-  }
+  // 현재 like_count 가져오기
+  const { data: current, error: fetchError } = await supabase
+    .from('post')
+    .select('like_count')
+    .eq('id', post_id)
+    .single();
 
-  await db.query(`UPDATE post SET like_count = like_count + 1 WHERE id = ?`, [postId]);
+  if (fetchError) return Response.json({ error: fetchError.message }, { status: 500 });
 
-  return NextResponse.json({ success: true });
+  const newCount = (current?.like_count || 0) + 1;
+
+  const { error: updateError } = await supabase
+    .from('post')
+    .update({ like_count: newCount })
+    .eq('id', post_id);
+
+  if (updateError) return Response.json({ error: updateError.message }, { status: 500 });
+
+  return Response.json({ like_count: newCount });
 }

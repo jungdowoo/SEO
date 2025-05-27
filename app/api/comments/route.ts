@@ -1,24 +1,25 @@
-import {db} from "@/lib/db";
-import {NextResponse} from "next/server";
+import { supabase } from '@/lib/supabase';
+
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const postId = url.searchParams.get('postId');
+
+  const { data, error } = await supabase
+    .from('comment')
+    .select('*')
+    .eq('post_id', postId)
+    .order('id', { ascending: true });
+
+  if (error) return Response.json({ error: error.message }, { status: 500 });
+  return Response.json(data);
+}
 
 export async function POST(req: Request) {
-    const {postId, author, content} = await req.json();
+  const body = await req.json();
+  const { post_id, content, author } = body;
 
-    if(!postId || !author || !content) {
-        return NextResponse.json({error: "모든 필드를 입력하세요."}, {status:400});
-    }
-    await db.query(
-        'INSERT INTO comment (post_id, author, content) VALUES(?,?,?)',
-        [postId,author,content]
-    );
-    return NextResponse.json({message:"댓글이 등록되었습니다."});
-}
-export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const postId = searchParams.get("postId");
+  const { data, error } = await supabase.from('comment').insert([{ post_id, content, author }]);
 
-  if (!postId) return NextResponse.json([], { status: 200 });
-
-  const [rows] = await db.query(`SELECT * FROM comment WHERE post_id = ? ORDER BY created_at DESC`, [postId]);
-  return NextResponse.json(rows);
+  if (error) return Response.json({ error: error.message }, { status: 500 });
+  return Response.json(data, { status: 201 });
 }

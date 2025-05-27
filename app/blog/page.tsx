@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import AdSlot from "../components/AdSlot";
-
+import Head from "next/head";
 
 const categories = ["전체", "베스트썰", "18세썰", "사이다썰", "연애썰", "치정썰"];
 
@@ -32,6 +32,12 @@ export default function BlogPage() {
       : posts.filter((post) => post.category === selectedCategory);
 
   return (
+    <>
+    <Head>
+    <title>썰레발 -썰 구경하기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    </Head>
+
     <div className="min-h-screen bg-white px-4 py-12 text-gray-800 max-w-5xl mx-auto">
       <h1 className="text-3xl font-extrabold text-center text-pink-600 mb-10">
         ✨ 썰 구경하기
@@ -74,5 +80,6 @@ export default function BlogPage() {
         )}
       </div>
     </div>
+    </>
   );
 }

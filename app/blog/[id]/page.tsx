@@ -45,7 +45,7 @@ export default async function PostDetailPage({ params }: any) {
     </div>
 
     {/* 본문 내용 */}
-    <div className="prose prose-lg max-w-none leading-relaxed text-gray-800 whitespace-pre-line">
+    <div className="prose prose-xl max-w-none text-gray-900 leading-loose tracking-wide font-[pretendard]">
       {post.content}
     </div>
 
