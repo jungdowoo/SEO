@@ -17,10 +17,14 @@ export default function CommentForm({ postId, onCommentAdded }: Props) {
     setLoading(true);
 
     await fetch("/api/comments", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" }, // ← 대소문자 "Content-Type" 주의!
-      body: JSON.stringify({ post_Id, author, content }),
-    });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    post_id: postId,   // ✅ key 이름 변경!
+    author,
+    content,
+  }),
+});
 
     setAuthor("");
     setContent("");
