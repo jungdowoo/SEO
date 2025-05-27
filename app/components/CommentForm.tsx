@@ -19,7 +19,7 @@ export default function CommentForm({ postId, onCommentAdded }: Props) {
     await fetch("/api/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" }, // ← 대소문자 "Content-Type" 주의!
-      body: JSON.stringify({ postId, author, content }),
+      body: JSON.stringify({ post_Id, author, content }),
     });
 
     setAuthor("");
