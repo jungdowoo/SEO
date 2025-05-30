@@ -14,6 +14,8 @@ type Post = {
   comment_count: number;
   created_at: string;
   category: string;
+  description: string;
+  keywords: string;
 };
 
 export default async function PostDetailPage({ params }: any) {
@@ -46,7 +48,7 @@ export default async function PostDetailPage({ params }: any) {
       </div>
 
       {/* 본문 내용 */}
-      <div className="prose prose-xl max-w-none text-gray-900 leading-loose tracking-wide font-[pretendard]">
+      <div className="max-w-3xl mx-auto text-[17px] leading-[2] text-gray-800 text-left px-6 sm:px-0 font-[pretendard] font-medium whitespace-pre-line">
         {post.content}
       </div>
 

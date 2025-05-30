@@ -16,8 +16,20 @@ export const generateMetadata = async ({ params }: Params): Promise<Metadata> =>
     };
   }
 
+  const description = post.description || post.content?.slice(0, 100) + "...";
+  const keywords = post.keywords || ""; 
+
   return {
     title: `${post.title} | 썰레발`,
-    description: post.content.slice(0, 100) + "...",
+    description,
+    keywords,
+    openGraph: {
+      title: `${post.title} | 썰레발`,
+      description,
+    },
+    twitter: {
+      title: `${post.title} | 썰레발`,
+      description,
+    },
   };
 };
