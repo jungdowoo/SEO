@@ -26,6 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        {/* ✅ 구글 애드센스 승인용 코드 추가 */}
+        <meta name="google-adsense-account" content="ca-pub-XXXXXXX" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8968704393078565"
+         crossOrigin="anonymous"></script>
+      </head>
       <body className="flex flex-col min-h-screen">
   <Header />
   <main className="flex-1 w-full mx-auto">
