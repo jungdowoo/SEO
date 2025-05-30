@@ -19,7 +19,7 @@ export default function Home() {
             🔍 썰 구경하기
           </Link>
           <Link
-            href="/submit"
+            href="/contact"
             className="px-6 py-3 rounded-full bg-white border border-pink-400 text-pink-600 font-semibold hover:bg-pink-50 transition"
           >
             ✍️ 썰 제보하기
@@ -27,9 +27,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="mt-16 text-sm text-gray-500">
-        © 2025 썰레발 — 세상에서 가장 웃긴 썰 저장소
-      </footer>
+      
     </div>
   );
 }

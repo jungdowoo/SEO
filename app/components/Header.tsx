@@ -10,11 +10,10 @@ export default function Header() {
             썰레발
           </span>
         </Link>
-        <nav className="space-x-4 hidden md:block">
-          <Link href="/" className="text-gray-700 hover:text-blue-600">홈</Link>
-          <Link href="/blog" className="text-gray-700 hover:text-blue-600">블로그</Link>
-          <Link href="/about" className="text-gray-700 hover:text-blue-600">소개</Link>
-          <Link href="/contact" className="text-gray-700 hover:text-blue-600">문의</Link>
+        <nav className="space-x-4 hidden md:block text-[16px] font-medium text-gray-700">
+          <Link href="/" className="text-gray-700">홈</Link>
+          <Link href="/blog" className="text-gray-700">썰</Link>
+          <Link href="/contact" className="text-gray-700">문의</Link>
         </nav>
       </div>
     </header>

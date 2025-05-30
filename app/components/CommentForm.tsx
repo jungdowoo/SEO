@@ -20,7 +20,7 @@ export default function CommentForm({ postId, onCommentAdded }: Props) {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    post_id: postId,   // ✅ key 이름 변경!
+    post_id: postId,   
     author,
     content,
   }),

@@ -1,10 +1,45 @@
-// app/blog/[id]/page.tsx
 
 import AdSlot from "../../components/AdSlot";
 import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import PostCommentSection from "@/app/components/PostCommentSection";
 import PostLikeButton from "@/app/components/PostLikeButton";
+import {Metadata} from "next";
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const postId = Number(params.id);
+
+  const { data: post } = await supabase
+    .from("post")
+    .select("title, content")
+    .eq("id", postId)
+    .single();
+
+  if (!post) {
+    return {
+      title: "글을 찾을 수 없습니다",
+      description: "존재하지 않는 게시글입니다.",
+    };
+  }
+
+  const title = `${post.title} | 썰레발`;
+  const description = post.content.slice(0, 100) + "...";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+    },
+    twitter: {
+      title,
+      description,
+    },
+  };
+}
+
+
 
 type Post = {
   id: number;
