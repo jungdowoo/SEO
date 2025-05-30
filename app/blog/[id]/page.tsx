@@ -4,36 +4,6 @@ import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import PostCommentSection from "@/app/components/PostCommentSection";
 import PostLikeButton from "@/app/components/PostLikeButton";
-import {Metadata} from "next";
-
-export const generateMetadata = async (
-  { params }: { params: { id: string } }
-): Promise<Metadata> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/metadata/${params.id}`, {
-    next: { revalidate: 60 },
-  });
-  const post = await res.json();
-
-  if (!post?.title) {
-    return {
-      title: "글을 찾을 수 없습니다",
-      description: "존재하지 않는 게시글입니다.",
-    };
-  }
-
-  return {
-    title: `${post.title} | 썰레발`,
-    description: post.content.slice(0, 100) + "...",
-    openGraph: {
-      title: `${post.title} | 썰레발`,
-      description: post.content.slice(0, 100) + "...",
-    },
-    twitter: {
-      title: `${post.title} | 썰레발`,
-      description: post.content.slice(0, 100) + "...",
-    },
-  };
-};
 
 
 type Post = {
