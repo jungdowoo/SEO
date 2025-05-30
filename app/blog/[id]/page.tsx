@@ -4,11 +4,14 @@ import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import PostCommentSection from "@/app/components/PostCommentSection";
 import PostLikeButton from "@/app/components/PostLikeButton";
-import {Metadata} from "next";
+import {Metadata,ResolvingMetadata} from "next";
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: { id: string } },
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/metadata/${params.id}`, {
-    next: { revalidate: 60 }, 
+    next: { revalidate: 60 },
   });
   const post = await res.json();
 
