@@ -4,12 +4,11 @@ import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import PostCommentSection from "@/app/components/PostCommentSection";
 import PostLikeButton from "@/app/components/PostLikeButton";
-import {Metadata,ResolvingMetadata} from "next";
+import {Metadata} from "next";
 
-export async function generateMetadata(
-  { params }: { params: { id: string } },
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export const generateMetadata = async (
+  { params }: { params: { id: string } }
+): Promise<Metadata> => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/metadata/${params.id}`, {
     next: { revalidate: 60 },
   });
@@ -34,7 +33,7 @@ export async function generateMetadata(
       description: post.content.slice(0, 100) + "...",
     },
   };
-}
+};
 
 
 type Post = {
