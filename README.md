@@ -23,5 +23,5 @@ SEO 최적화: 메타 태그 및 구조화된 데이터 적용
 📬 연락처
 핸드폰:010-3070-1545
 
-이메일: jungdowoo@example.com
+이메일: jdw9302@naver.com
 
