@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📘 프로젝트 소개
+SSULREBAL.COM은 SEO 최적화를 위한 웹사이트로, Next.js와 Tailwind CSS를 활용하여 구축되었습니다. 이 프로젝트는 검색 엔진 최적화(SEO)를 고려한 웹사이트 개발을 목표로 하며, 사용자 친화적인 UI와 빠른 로딩 속도를 제공합니다.
 
-## Getting Started
+🚀 데모
+배포 주소: ssulrebal.com
 
-First, run the development server:
+🛠 기술 스택
+프레임워크: Next.js
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+스타일링: Tailwind CSS
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+언어: TypeScript
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+폰트: Geist (next/font 사용)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📄 기능 소개
+SEO 최적화: 메타 태그 및 구조화된 데이터 적용
 
-## Learn More
+반응형 디자인: 모바일 및 데스크탑 환경에 최적화
 
-To learn more about Next.js, take a look at the following resources:
+빠른 로딩 속도: 코드 스플리팅 및 이미지 최적화
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📬 연락처
+핸드폰:010-3070-1545
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+이메일: jungdowoo@example.com
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
