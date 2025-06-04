@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const { data, error } = await supabase
-    .from('post') // <- 정확한 테이블명
+    .from('post')
     .select('*');
 
   if (error) {

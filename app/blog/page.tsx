@@ -4,7 +4,7 @@ import Link from "next/link";
 import AdSlot from "../components/AdSlot";
 import Head from "next/head";
 
-const categories = ["전체", "베스트썰", "18세썰", "사이다썰", "연애썰", "감동썰","소름썰","일상썰"];
+const categories = ["전체", "베스트썰", "18세썰", "사이다썰", "연애썰", "감동썰","소름썰","일상썰","가족썰"];
 
 type Post = {
   id: number;
