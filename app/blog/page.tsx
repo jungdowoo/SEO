@@ -83,7 +83,9 @@ export default function BlogPage() {
           <Link href={`/blog/${post.id}`} className="text-lg font-bold hover:underline">
             {post.title}
           </Link>
-          <p className="text-sm text-gray-600">{post.created_at} · 💬 {post.comment_count} · ❤️ {post.like_count}</p>
+          <p className="text-sm text-gray-600">
+            {post.created_at.split("T")[0]} · 💬 {post.comment_count} · ❤️ {post.like_count}
+          </p>
         </div>
       ))}
 
