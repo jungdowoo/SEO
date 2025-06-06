@@ -45,7 +45,7 @@ export default function BlogPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
       <Head>
-        <title>썰리발 - 인기 썰 모음</title>
+        <title>썰레발 - 인기 썰 모음</title>
       </Head>
 
       <div className="flex flex-wrap gap-2 mb-4">
